@@ -1,0 +1,12 @@
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: -webkit-gradient(linear, left top, right top, from(#00aaff), to(#00ff6c));
+  background: linear-gradient(to right, #00aaff, #00ff6c);
+}
+/*# sourceMappingURL=App.css.map */
