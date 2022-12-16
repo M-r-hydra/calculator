@@ -10,15 +10,14 @@ import { DigitButtonProps, stateReducerArg2 } from "./models/customTypes";
 import { I_initialState, I_ReducerActions } from "./models/interfaces";
 // Models
 
-const ACTIONS: I_ReducerActions = {
-  ADD_DIGIT: "add-digit",
-  CLEAR: "clear",
-  DELETE_DIGIT: "delete-digit",
-  CHOOSE_OPERATION: "choose-operation",
-  EVALUATE: "evaluate",
-};
-
 const App = () => {
+  const ACTIONS: I_ReducerActions = {
+    ADD_DIGIT: "add-digit",
+    CLEAR: "clear",
+    DELETE_DIGIT: "delete-digit",
+    CHOOSE_OPERATION: "choose-operation",
+    EVALUATE: "evaluate",
+  };
   function reducer(
     state: I_initialState,
     { type, payload }: stateReducerArg2
@@ -30,6 +29,112 @@ const App = () => {
           ...state,
           currentOperand: `${state?.currentOperand || ""}${payload.digit}`,
         };
+
+      case ACTIONS.CHOOSE_OPERATION:
+        switch (payload.operation) {
+          case "ac":
+            return {
+              currentOperand: "",
+              prevOperand: "",
+              operation: "",
+            };
+          case "del":
+            return {
+              ...state,
+              currentOperand: String(state.currentOperand).slice(0, -1),
+            };
+
+          case "dv":
+            return {
+              ...state,
+              prevOperand: state.currentOperand,
+              currentOperand: "",
+              operation: "÷",
+            };
+          case "mul":
+            return {
+              ...state,
+              prevOperand: state.currentOperand,
+              currentOperand: "",
+              operation: "×",
+            };
+          case "plus":
+            return {
+              ...state,
+              prevOperand: state.currentOperand,
+              currentOperand: "",
+              operation: "+",
+            };
+          case "min":
+            return {
+              ...state,
+              prevOperand: state.currentOperand,
+              currentOperand: "",
+              operation: "-",
+            };
+
+          case "eq":
+            const currentOperandCalculator = (
+              a: number,
+              b: number,
+              op: "×" | "÷" | "+" | "-"
+            ): number => {
+              console.log(op);
+              switch (op) {
+                case "÷":
+                  return a / b;
+                case "-":
+                  return a - b;
+                case "×":
+                  return a * b;
+                case "+":
+                  return a + b;
+              }
+            };
+            switch (state.operation) {
+              case "-":
+                return {
+                  currentOperand: currentOperandCalculator(
+                    Number(state.prevOperand),
+                    Number(state.currentOperand),
+                    "-"
+                  ),
+                };
+              case "+":
+                return {
+                  currentOperand: currentOperandCalculator(
+                    Number(state.currentOperand),
+                    Number(state.prevOperand),
+                    "+"
+                  ),
+                };
+              case "÷":
+                return {
+                  currentOperand: currentOperandCalculator(
+                    Number(state.prevOperand),
+                    Number(state.currentOperand),
+                    "÷"
+                  ),
+                };
+              case "×":
+                return {
+                  currentOperand: currentOperandCalculator(
+                    Number(state.currentOperand),
+                    Number(state.prevOperand),
+                    "×"
+                  ),
+                };
+              default:
+                console.log(state.operation + "Not Found !");
+                return;
+            }
+          default:
+            console.log("defult of choose OP");
+            console.log(payload);
+            return state;
+        }
+      default:
+        return state;
     }
   }
   const initialState: I_initialState = {
@@ -44,7 +149,10 @@ const App = () => {
   const digitButtons: DigitButtonProps[] = [
     {
       dispatch: () =>
-        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { operation: "ac" } }),
+        dispatch({
+          type: ACTIONS.CHOOSE_OPERATION,
+          payload: { operation: "ac" },
+        }),
       value: "AC",
       className: "span-two",
     },
@@ -149,7 +257,10 @@ const App = () => {
     },
     {
       dispatch: () =>
-        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { operation: "dot" } }),
+        dispatch({
+          type: ACTIONS.CHOOSE_OPERATION,
+          payload: { operation: "dot" },
+        }),
       value: ".",
       className: "",
     },
