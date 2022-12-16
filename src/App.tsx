@@ -132,7 +132,9 @@ const App = () => {
             };
           default:
             console.log(state.operation + "Not Found !");
-            return;
+            return {
+              ...state,
+            };
         }
       default:
         return state;
