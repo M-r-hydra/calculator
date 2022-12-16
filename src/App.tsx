@@ -10,56 +10,59 @@ import { DigitButtonProps, stateReducerArg2 } from "./models/customTypes";
 import { I_initialState, I_ReducerActions } from "./models/interfaces";
 // Models
 
+const ACTIONS: I_ReducerActions = {
+  ADD_DIGIT: "add-digit",
+  CLEAR: "clear",
+  DELETE_DIGIT: "delete-digit",
+  CHOOSE_OPERATION: "choose-operation",
+  EVALUATE: "evaluate",
+};
+
 const App = () => {
+  function reducer(
+    state: I_initialState,
+    { type, payload }: stateReducerArg2
+  ): any {
+    switch (type) {
+      case ACTIONS.ADD_DIGIT:
+        console.log(state);
+        return {
+          ...state,
+          currentOperand: `${state?.currentOperand || ""}${payload.digit}`,
+        };
+    }
+  }
   const initialState: I_initialState = {
     currentOperand: "",
     prevOperand: "",
     operation: "",
   };
-
-  const ACTIONS: I_ReducerActions = {
-    ADD_DIGIT: "add-digit",
-    CLEAR: "clear",
-    DELETE_DIGIT: "delete-digit",
-    CHOOSE_OPERATION: "choose-operation",
-    EVALUATE: "evaluate",
-  };
-
   const [{ currentOperand, prevOperand, operation }, dispatch] = useReducer(
     reducer,
-    initialState
+    { ...initialState }
   );
-
-  function reducer(
-    state: I_initialState,
-    { type, payload }: stateReducerArg2
-  ): any {
-    if (type === ACTIONS.ADD_DIGIT) {
-      console.log(payload);
-      return {
-        ...state,
-        currentOperand: payload.digit,
-      };
-    } else {
-      console.log("else");
-    }
-  }
   const digitButtons: DigitButtonProps[] = [
     {
       dispatch: () =>
-        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 1 } }),
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { operation: "ac" } }),
       value: "AC",
       className: "span-two",
     },
     {
       dispatch: () =>
-        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 1 } }),
+        dispatch({
+          type: ACTIONS.CHOOSE_OPERATION,
+          payload: { operation: "del" },
+        }),
       value: "DEL",
       className: "",
     },
     {
       dispatch: () =>
-        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 1 } }),
+        dispatch({
+          type: ACTIONS.CHOOSE_OPERATION,
+          payload: { operation: "dv" },
+        }),
       value: "/",
       className: "",
     },
@@ -83,7 +86,10 @@ const App = () => {
     },
     {
       dispatch: () =>
-        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 5 } }),
+        dispatch({
+          type: ACTIONS.CHOOSE_OPERATION,
+          payload: { operation: "mul" },
+        }),
       value: "*",
       className: "",
     },
@@ -107,7 +113,10 @@ const App = () => {
     },
     {
       dispatch: () =>
-        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 9999 } }),
+        dispatch({
+          type: ACTIONS.CHOOSE_OPERATION,
+          payload: { operation: "plus" },
+        }),
       value: "+",
       className: "",
     },
@@ -131,13 +140,16 @@ const App = () => {
     },
     {
       dispatch: () =>
-        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 55555 } }),
+        dispatch({
+          type: ACTIONS.CHOOSE_OPERATION,
+          payload: { operation: "min" },
+        }),
       value: "-",
       className: "",
     },
     {
       dispatch: () =>
-        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 55256652 } }),
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { operation: "dot" } }),
       value: ".",
       className: "",
     },
@@ -147,10 +159,12 @@ const App = () => {
       value: "0",
       className: "",
     },
-
     {
       dispatch: () =>
-        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 6552 } }),
+        dispatch({
+          type: ACTIONS.CHOOSE_OPERATION,
+          payload: { operation: "eq" },
+        }),
       value: "=",
       className: "span-two",
     },

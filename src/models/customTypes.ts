@@ -17,7 +17,8 @@ export type EVALUATE = string;
 export type stateReducerArg2 = {
   type: ADD_DIGIT | CLEAR | DELETE_DIGIT | CHOOSE_OPERATION | EVALUATE;
   payload: {
-    digit: number;
+    digit?: number;
+    operation?: string;
   };
 };
 
