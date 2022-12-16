@@ -6,12 +6,12 @@ import { DigitButtonProps } from "../../models/customTypes";
 // Models
 
 const DigitButton: React.FunctionComponent<DigitButtonProps> = ({
-  onClick,
+  dispatch,
   value,
   className,
 }) => {
   return (
-    <div className={className} onClick={() => onClick()}>
+    <div className={className} onClick={() => dispatch}>
       {value}
     </div>
   );

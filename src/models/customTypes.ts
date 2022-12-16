@@ -1,11 +1,11 @@
-// IMPORT FROM INTERFACES
 import { I_initialState } from "./interfaces";
+// IMPORT FROM INTERFACES
 // IMPORT FROM INTERFACES
 
 export type DigitButtonProps = {
   className?: string;
   value: string;
-  onClick: Function;
+  dispatch: digitDispatchHandler;
 };
 
 export type ADD_DIGIT = string;
@@ -24,4 +24,11 @@ export type stateReducer = (
   }
 ) => any;
 
-export type digitHandler = (value: string | number) => () => void;
+export type digitDispatchHandler = (
+  {}: {
+    type: ADD_DIGIT | CLEAR | DELETE_DIGIT | CHOOSE_OPERATION | EVALUATE;
+  },
+  payload: {
+    digit: number;
+  }
+) => {};
