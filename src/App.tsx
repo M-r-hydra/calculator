@@ -38,11 +38,6 @@ const App = () => {
               prevOperand: "",
               operation: "",
             };
-          case "del":
-            return {
-              ...state,
-              currentOperand: String(state.currentOperand).slice(0, -1),
-            };
 
           case "dv":
             return {
@@ -73,65 +68,71 @@ const App = () => {
               operation: "-",
             };
 
-          case "eq":
-            const currentOperandCalculator = (
-              a: number,
-              b: number,
-              op: "×" | "÷" | "+" | "-"
-            ): number => {
-              console.log(op);
-              switch (op) {
-                case "÷":
-                  return a / b;
-                case "-":
-                  return a - b;
-                case "×":
-                  return a * b;
-                case "+":
-                  return a + b;
-              }
-            };
-            switch (state.operation) {
-              case "-":
-                return {
-                  currentOperand: currentOperandCalculator(
-                    Number(state.prevOperand),
-                    Number(state.currentOperand),
-                    "-"
-                  ),
-                };
-              case "+":
-                return {
-                  currentOperand: currentOperandCalculator(
-                    Number(state.currentOperand),
-                    Number(state.prevOperand),
-                    "+"
-                  ),
-                };
-              case "÷":
-                return {
-                  currentOperand: currentOperandCalculator(
-                    Number(state.prevOperand),
-                    Number(state.currentOperand),
-                    "÷"
-                  ),
-                };
-              case "×":
-                return {
-                  currentOperand: currentOperandCalculator(
-                    Number(state.currentOperand),
-                    Number(state.prevOperand),
-                    "×"
-                  ),
-                };
-              default:
-                console.log(state.operation + "Not Found !");
-                return;
-            }
           default:
             console.log("defult of choose OP");
             console.log(payload);
             return state;
+        }
+      case ACTIONS.DELETE_DIGIT:
+        return {
+          ...state,
+          currentOperand: String(state.currentOperand).slice(0, -1),
+        };
+
+      case ACTIONS.EVALUATE:
+        const currentOperandCalculator = (
+          a: number,
+          b: number,
+          op: "×" | "÷" | "+" | "-"
+        ): number => {
+          console.log(op);
+          switch (op) {
+            case "÷":
+              return a / b;
+            case "-":
+              return a - b;
+            case "×":
+              return a * b;
+            case "+":
+              return a + b;
+          }
+        };
+        switch (state.operation) {
+          case "-":
+            return {
+              currentOperand: currentOperandCalculator(
+                Number(state.prevOperand),
+                Number(state.currentOperand),
+                "-"
+              ),
+            };
+          case "+":
+            return {
+              currentOperand: currentOperandCalculator(
+                Number(state.currentOperand),
+                Number(state.prevOperand),
+                "+"
+              ),
+            };
+          case "÷":
+            return {
+              currentOperand: currentOperandCalculator(
+                Number(state.prevOperand),
+                Number(state.currentOperand),
+                "÷"
+              ),
+            };
+          case "×":
+            return {
+              currentOperand: currentOperandCalculator(
+                Number(state.currentOperand),
+                Number(state.prevOperand),
+                "×"
+              ),
+            };
+          default:
+            console.log(state.operation + "Not Found !");
+            return;
         }
       default:
         return state;
@@ -159,7 +160,7 @@ const App = () => {
     {
       dispatch: () =>
         dispatch({
-          type: ACTIONS.CHOOSE_OPERATION,
+          type: ACTIONS.DELETE_DIGIT,
           payload: { operation: "del" },
         }),
       value: "DEL",
@@ -273,7 +274,7 @@ const App = () => {
     {
       dispatch: () =>
         dispatch({
-          type: ACTIONS.CHOOSE_OPERATION,
+          type: ACTIONS.EVALUATE,
           payload: { operation: "eq" },
         }),
       value: "=",
