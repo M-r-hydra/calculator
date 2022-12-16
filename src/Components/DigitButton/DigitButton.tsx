@@ -1,12 +1,9 @@
 // React
 import React from "react";
 // React
-
-type DigitButtonProps = {
-  className?: string;
-  value: string;
-  onClick: Function;
-};
+// Models
+import { DigitButtonProps } from "../../models/customTypes";
+// Models
 
 const DigitButton: React.FunctionComponent<DigitButtonProps> = ({
   onClick,
@@ -14,12 +11,7 @@ const DigitButton: React.FunctionComponent<DigitButtonProps> = ({
   className,
 }) => {
   return (
-    <div
-      className={className}
-      onClick={() => {
-        onClick();
-      }}
-    >
+    <div className={className} onClick={() => onClick()}>
       {value}
     </div>
   );

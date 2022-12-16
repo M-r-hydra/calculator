@@ -1,24 +1,18 @@
+// IMPORT FROM CUSTOM TYPES
+import {
+  ADD_DIGIT,
+  CHOOSE_OPERATION,
+  CLEAR,
+  DELETE_DIGIT,
+  EVALUATE,
+} from "./customTypes";
+// IMPORT FROM CUSTOM TYPES
+
 export interface I_initialState {
   currentOperand: string | number;
   prevOperand: string | number;
   operation: string;
 }
-
-export type stateReducer = (
-  state: I_initialState,
-  {}: {
-    type: ADD_DIGIT | CLEAR | DELETE_DIGIT | CHOOSE_OPERATION | EVALUATE;
-    payload: {
-      digit: number;
-    };
-  }
-) => any;
-
-type ADD_DIGIT = string;
-type CLEAR = string;
-type DELETE_DIGIT = string;
-type CHOOSE_OPERATION = string;
-type EVALUATE = string;
 
 export interface I_ReducerActions {
   ADD_DIGIT: ADD_DIGIT;
@@ -26,4 +20,8 @@ export interface I_ReducerActions {
   DELETE_DIGIT: DELETE_DIGIT;
   CHOOSE_OPERATION: CHOOSE_OPERATION;
   EVALUATE: EVALUATE;
+}
+
+export interface I_digitButtons {
+  value: string;
 }
