@@ -32,13 +32,6 @@ const App = () => {
 
       case ACTIONS.CHOOSE_OPERATION:
         switch (payload.operation) {
-          case "ac":
-            return {
-              currentOperand: "",
-              prevOperand: "",
-              operation: "",
-            };
-
           case "dv":
             return {
               ...state,
@@ -67,7 +60,6 @@ const App = () => {
               currentOperand: "",
               operation: "-",
             };
-
           default:
             console.log("defult of choose OP");
             console.log(payload);
@@ -136,6 +128,13 @@ const App = () => {
               ...state,
             };
         }
+      case ACTIONS.CLEAR:
+        return {
+          currentOperand: "",
+          prevOperand: "",
+          operation: "",
+        };
+
       default:
         return state;
     }
@@ -153,7 +152,7 @@ const App = () => {
     {
       dispatch: () =>
         dispatch({
-          type: ACTIONS.CHOOSE_OPERATION,
+          type: ACTIONS.CLEAR,
           payload: { operation: "ac" },
         }),
       value: "AC",
