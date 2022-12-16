@@ -5,8 +5,12 @@
 
 body {
   margin: 0;
-  background: linear-gradient(to right, #00aaff, #00ff6c);
-
+  background: linear-gradient(128deg, #00aaff, #00ff6c, #bb24ce);
+  background-size: 600% 600%;
+  -webkit-animation: AnimationName 4s ease infinite;
+  -moz-animation: AnimationName 4s ease infinite;
+  -o-animation: AnimationName 4s ease infinite;
+  animation: AnimationName 4s ease infinite alternate-reverse;
   .calculator-grid {
     display: grid;
     margin-top: 2rem;
@@ -49,5 +53,51 @@ body {
     &:focus {
       background-color: rgba(255, 255, 255, 0.9);
     }
+  }
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 9%;
+  }
+  50% {
+    background-position: 100% 92%;
+  }
+  100% {
+    background-position: 0% 9%;
+  }
+}
+
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 9%;
+  }
+  50% {
+    background-position: 100% 92%;
+  }
+  100% {
+    background-position: 0% 9%;
+  }
+}
+@-o-keyframes AnimationName {
+  0% {
+    background-position: 0% 9%;
+  }
+  50% {
+    background-position: 100% 92%;
+  }
+  100% {
+    background-position: 0% 9%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 9%;
+  }
+  50% {
+    background-position: 100% 92%;
+  }
+  100% {
+    background-position: 0% 9%;
   }
 }

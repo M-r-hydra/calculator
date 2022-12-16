@@ -1,54 +1,41 @@
 *::before,
 *::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background: -webkit-gradient(linear, left top, right top, from(#00aaff), to(#00ff6c));
-  background: linear-gradient(to right, #00aaff, #00ff6c);
+  background: linear-gradient(128deg, #00aaff, #00ff6c, #bb24ce);
+  background-size: 600% 600%;
+  -webkit-animation: AnimationName 4s ease infinite;
+  animation: AnimationName 4s ease infinite alternate-reverse;
 }
-
 body .calculator-grid {
-  display: -ms-grid;
   display: grid;
   margin-top: 2rem;
-  -ms-grid-columns: (6rem)[4];
-      grid-template-columns: repeat(4, 6rem);
-  -ms-grid-rows: minmax(7rem, auto) (6rem)[5];
-      grid-template-rows: minmax(7rem, auto) repeat(5, 6rem);
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  grid-template-columns: repeat(4, 6rem);
+  grid-template-rows: minmax(7rem, auto) repeat(5, 6rem);
+  justify-content: center;
 }
-
 body .span-two {
   grid-column: span 2;
 }
-
 body .output {
-  grid-column: 1 / -1;
+  grid-column: 1/-1;
   background-color: rgba(0, 0, 0, 0.75);
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  align-items: flex-end;
+  justify-content: space-around;
   padding: 0.75rem;
   word-break: break-all;
 }
-
 body .output .previous-operand {
   color: rgba(255, 255, 255, 0.75);
   font-size: 1.5rem;
 }
-
 body .output .current-operand {
   color: rgba(255, 255, 255, 0.75);
   font-size: 2.5rem;
 }
-
 body button {
   cursor: pointer;
   font-size: 2rem;
@@ -56,8 +43,29 @@ body button {
   outline: none;
   background-color: rgba(255, 255, 255, 0.75);
 }
-
 body button:hover, body button:focus {
   background-color: rgba(255, 255, 255, 0.9);
 }
-/*# sourceMappingURL=App.css.map */
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 9%;
+  }
+  50% {
+    background-position: 100% 92%;
+  }
+  100% {
+    background-position: 0% 9%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 9%;
+  }
+  50% {
+    background-position: 100% 92%;
+  }
+  100% {
+    background-position: 0% 9%;
+  }
+}/*# sourceMappingURL=App.css.map */
