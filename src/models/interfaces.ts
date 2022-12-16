@@ -8,7 +8,9 @@ export type stateReducer = (
   state: I_initialState,
   {}: {
     type: ADD_DIGIT | CLEAR | DELETE_DIGIT | CHOOSE_OPERATION | EVALUATE;
-    payload: any;
+    payload: {
+      digit: number;
+    };
   }
 ) => any;
 

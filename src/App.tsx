@@ -19,7 +19,15 @@ const App = () => {
     EVALUATE: "evaluate",
   };
 
-  const reducer: stateReducer = (state, { type, payload }) => {};
+  const reducer: stateReducer = (state, { type, payload }) => {
+    switch (type) {
+      case ACTIONS.ADD_DIGIT:
+        return {
+          ...state,
+          currentOperand: `${currentOperand || ""}${payload.digit}`,
+        };
+    }
+  };
 
   const initialState: I_initialState = {
     currentOperand: "",
