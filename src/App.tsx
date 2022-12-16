@@ -1,15 +1,43 @@
 // React
-import React from "react";
+import React, { useReducer } from "react";
 // React
 // CSS
 import "./App.css";
+import {
+  I_initialState,
+  I_ReducerActions,
+  stateReducer,
+} from "./models/interfaces";
 // CSS
 
 const App = () => {
+  const ACTIONS: I_ReducerActions = {
+    ADD_DIGIT: "add-digit",
+    CLEAR: "clear",
+    DELETE_DIGIT: "delete-digit",
+    CHOOSE_OPERATION: "choose-operation",
+    EVALUATE: "evaluate",
+  };
+
+  const reducer: stateReducer = (state, { type, payload }) => {};
+
+  const initialState: I_initialState = {
+    currentOperand: "",
+    prevOperand: "",
+    operation: "",
+  };
+
+  const [{ currentOperand, prevOperand, operation }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
+
   return (
     <div className="calculator-grid">
       <div className="output">
-        <div className="previous-operand"></div>
+        <div className="previous-operand">
+          {prevOperand} {operation}
+        </div>
         <div className="current-operand"></div>
       </div>
       <button className="span-two">AC</button>
