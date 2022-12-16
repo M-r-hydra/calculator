@@ -30,100 +30,6 @@ const App = () => {
     initialState
   );
 
-  const digitButtons: DigitButtonProps[] = [
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "AC",
-      className: "span-two",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "DEL",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "/",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "1",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "2",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "3",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "*",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "4",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "5",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "6",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "+",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "7",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "8",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "9",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "-",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: ".",
-      className: "",
-    },
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "0",
-      className: "",
-    },
-
-    {
-      dispatch: () => digitClickHandler(ACTIONS.ADD_DIGIT, { digit: 1 }),
-      value: "=",
-      className: "span-two",
-    },
-  ];
-
   function reducer(
     state: I_initialState,
     { type, payload }: stateReducerArg2
@@ -132,19 +38,123 @@ const App = () => {
       console.log(payload);
       return {
         ...state,
-        currentOperand: 1,
+        currentOperand: payload.digit,
       };
     } else {
       console.log("else");
     }
   }
+  const digitButtons: DigitButtonProps[] = [
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 1 } }),
+      value: "AC",
+      className: "span-two",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 1 } }),
+      value: "DEL",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 1 } }),
+      value: "/",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 1 } }),
+      value: "1",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 2 } }),
+      value: "2",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 3 } }),
+      value: "3",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 5 } }),
+      value: "*",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 4 } }),
+      value: "4",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 5 } }),
+      value: "5",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 6 } }),
+      value: "6",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 9999 } }),
+      value: "+",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 7 } }),
+      value: "7",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 8 } }),
+      value: "8",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 9 } }),
+      value: "9",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 55555 } }),
+      value: "-",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 55256652 } }),
+      value: ".",
+      className: "",
+    },
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 0 } }),
+      value: "0",
+      className: "",
+    },
 
-  function digitClickHandler(type: string, payload: { digit: number }): any {
-    dispatch({
-      type,
-      payload,
-    });
-  }
+    {
+      dispatch: () =>
+        dispatch({ type: ACTIONS.ADD_DIGIT, payload: { digit: 6552 } }),
+      value: "=",
+      className: "span-two",
+    },
+  ];
 
   return (
     <div className="calculator-grid">
@@ -157,14 +167,7 @@ const App = () => {
       {digitButtons.map((item) => (
         <DigitButton
           key={item.value}
-          dispatch={() =>
-            dispatch({
-              type: ACTIONS.ADD_DIGIT,
-              payload: {
-                digit: 1,
-              },
-            })
-          }
+          dispatch={() => item.dispatch()}
           value={item.value}
           className={item.className}
         />
