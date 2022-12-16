@@ -5,7 +5,7 @@ import { I_initialState } from "./interfaces";
 export type DigitButtonProps = {
   className?: string;
   value: string;
-  dispatch: digitDispatchHandler;
+  dispatch: any;
 };
 
 export type ADD_DIGIT = string;
@@ -14,15 +14,12 @@ export type DELETE_DIGIT = string;
 export type CHOOSE_OPERATION = string;
 export type EVALUATE = string;
 
-export type stateReducer = (
-  state: I_initialState,
-  {}: {
-    type: ADD_DIGIT | CLEAR | DELETE_DIGIT | CHOOSE_OPERATION | EVALUATE;
-    payload: {
-      digit: number;
-    };
-  }
-) => any;
+export type stateReducerArg2 = {
+  type: ADD_DIGIT | CLEAR | DELETE_DIGIT | CHOOSE_OPERATION | EVALUATE;
+  payload: {
+    digit: number;
+  };
+};
 
 export type digitDispatchHandler = (
   {}: {

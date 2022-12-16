@@ -11,7 +11,7 @@ const DigitButton: React.FunctionComponent<DigitButtonProps> = ({
   className,
 }) => {
   return (
-    <button className={className} onClick={() => dispatch}>
+    <button className={className} onClick={() => dispatch()}>
       {value}
     </button>
   );
